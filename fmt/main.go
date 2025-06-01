@@ -29,6 +29,10 @@ func (v ValidationError) Error() error {
 	return fmt.Errorf("Error occurred in field %s the Type is %T, Full error is %v", v.Field, v.Field, v.ErrorMessage)
 }
 
+func (v ValidationError) String() string {
+	return fmt.Sprintf("Error occurred in field %s the Type is %T, Full error: %v", v.Field, v.Field, v.ErrorMessage)
+}
+
 // func quiz() {
 // 	var dayOfWeek string
 // 	// TODO: Ask user questions using fmt.Print
@@ -80,7 +84,7 @@ func (t TableData) Print() {
 	// fmt.Printf("|%-10s", t.Headers[2])
 	// fmt.Printf("|%-10s\n", t.Headers[3])
 
-	for i := 0; i < len(t.Headers); i++ {
+	for i := range t.Headers {
 		if i == len(t.Headers)-1 {
 			fmt.Printf("|%-30s\n", t.Headers[i])
 			break
@@ -88,8 +92,8 @@ func (t TableData) Print() {
 		fmt.Printf("|%-30s", t.Headers[i])
 	}
 
-	for i := 0; i < len(t.Rows); i++ {
-		for j := 0; j < len(t.Rows[i]); j++ {
+	for i := range t.Rows {
+		for j := range t.Rows[i] {
 			if j == len(t.Rows[i])-1 {
 				fmt.Printf("|%-30s\n", t.Rows[i][j])
 				continue
@@ -170,20 +174,20 @@ func main() {
 	// fmt.Printf("Float in Float format: %f\n", percentage)
 
 	// TODO: Use the implemented String Method
-	// var me = Person{Name: "Daniel Okoronkwo", Age: 25, City: "Lagos"}
+	var me = Person{Name: "Daniel Okoronkwo", Age: 25, City: "Lagos"}
 	// sopuu := Person{Name: "Sopuluchukwu Nnacheta", Age: 28, City: "Lagos"}
 	// shazzar := Person{Name: "Daniel Oguejiofor", Age: 25, City: "Ibadan"}
 
-	// fmt.Println(me.String())
+	fmt.Println(me)
 	// fmt.Println(sopuu.String())
 	// fmt.Println(shazzar.String())
 
 	//TODO: Use the implemented Error method
 
-	// var stringError = ValidationError{Field: "String", ErrorMessage: "Could not validate string"}
+	var stringError = ValidationError{Field: "String", ErrorMessage: "Could not validate string"}
 	// floatError := ValidationError{"Float", "Could not validate float"}
 
-	// fmt.Println(stringError.Error().Error())
+	fmt.Println(stringError)
 	// fmt.Println(floatError.Error())
 
 	// quiz()

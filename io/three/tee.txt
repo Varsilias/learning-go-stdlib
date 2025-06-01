@@ -1,0 +1,4 @@
+This text is using the tee utility I wrote
+reads back anything i type to me on the standard output
+but it also stores it in a file as well
+Let's see if that is true
